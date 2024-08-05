@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Replacement Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>String Replacement Tool</h1>
+        <form id="replacementForm">
+            <label for="inputString">Enter the string:</label>
+            <input type="text" id="inputString" required>
+
+            <label for="replacementChar">Enter the character to replace 'a':</label>
+            <input type="text" id="replacementChar" maxlength="1" required>
+
+            <button type="submit">Replace</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('replacementForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let inputString = document.getElementById('inputString').value;
+            let replacementChar = document.getElementById('replacementChar').value;
+
+            // Validate that the replacementChar is a single character
+            if (replacementChar.length !== 1) {
+                alert('Please enter a single character for replacement.');
+                return;
+            }
+
+            let modifiedString = '';
+
+            for (let i = 0; i < inputString.length; i++) {
+                if (inputString[i] === 'a') {
+                    modifiedString += replacementChar;
+                } else if (inputString[i] === 'p') {
+                    modifiedString += 'a';
+                } else {
+                    modifiedString += inputString[i];
+                }
+            }
+
+            document.getElementById('result').textContent = `The modified string is: ${modifiedString}`;
+        });
+    </script>
+</body>
+</html>
